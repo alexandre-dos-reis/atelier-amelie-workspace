@@ -1,6 +1,6 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from '@lib/prisma';
 import { faker } from '@faker-js/faker';
-import { Product, PURCHASE_STATUS } from '@prisma/client';
+import { PURCHASE_STATUS } from '@prisma/client';
 
 export async function purchasesSeed(prisma: PrismaClient) {
   const products = await prisma.product.findMany();

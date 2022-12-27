@@ -4,7 +4,7 @@
   "license": "MIT",
   "prisma": {
     "schema": "libs/prisma/schema.prisma",
-    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} libs/prisma/src/seeds/run.ts"
+    "seed": "ts-node --project libs/prisma/tsconfig.json libs/prisma/src/seeds/run.ts"
   },
   "scripts": {
     "docker:up": "docker-compose --env-file ./.env -f docker/atelier-amelie-workspace/docker-compose.yml up -d",

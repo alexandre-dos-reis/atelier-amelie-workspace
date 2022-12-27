@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker';
 import slugify from 'slugify';
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from '@lib/prisma';
 
 export async function shopSeeds(prisma: PrismaClient) {
   const shopCategories = [

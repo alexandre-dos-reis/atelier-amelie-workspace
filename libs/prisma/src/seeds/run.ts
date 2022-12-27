@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from '@lib/prisma';
 import { gallerySeeds, shopSeeds, settingsSeed, purchasesSeed } from '.';
 
 const prisma = new PrismaClient();

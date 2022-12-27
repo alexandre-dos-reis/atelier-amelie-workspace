@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker';
 import slugify from 'slugify';
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from '@lib/prisma';
 
 export async function gallerySeeds(prisma: PrismaClient) {
   const catsName = [
@@ -33,8 +33,16 @@ export async function gallerySeeds(prisma: PrismaClient) {
         slug: slugify(name, { lower: true }),
         description: faker.random.words(20),
         showInGallery: faker.helpers.arrayElement([true, false]),
-        categories: {
-          connect: faker.helpers.arrayElements(categories.map((c) => ({ id: c.id }))),
+        Artwork_Categories: {
+          createMany: {
+            data: {
+              category_id: faker.helpers.arrayElement(
+                categories.map((c) => {
+                  return c.id;
+                })
+              ),
+            },
+          },
         },
       },
     });
