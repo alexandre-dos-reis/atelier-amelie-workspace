@@ -2,10 +2,23 @@
   "name": "atelier-amelie-workspace",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "prisma": {
+    "schema": "libs/prisma/schema.prisma",
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} libs/prisma/src/seeds/run.ts"
+  },
+  "scripts": {
+    "docker:up": "docker-compose --env-file ./.env -f docker/atelier-amelie-workspace/docker-compose.yml up -d",
+    "docker:down": "docker-compose --env-file ./.env -f docker/atelier-amelie-workspace/docker-compose.yml down",
+    "dev:all": "pnpm docker-up && nx run-many --target=serve --projects=api,admin",
+    "db:push": "nx run prisma:exec db push",
+    "db:drop": "nx run prisma:exec migrate reset --force --skip-seed",
+    "db:seed": "pnpm db:drop && pnpm db:push && nx run prisma:exec db seed",
+    "db:setup": "pnpm db:drop && pnpm db:push"
+  },
   "private": true,
   "devDependencies": {
     "@babel/preset-react": "^7.14.5",
+    "@faker-js/faker": "^7.6.0",
     "@nrwl/cypress": "15.4.1",
     "@nrwl/eslint-plugin-nx": "15.4.1",
     "@nrwl/jest": "15.4.1",
@@ -15,6 +28,7 @@
     "@nrwl/web": "15.4.1",
     "@nrwl/workspace": "15.4.1",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.7",
+    "@prisma/client": "^4.8.0",
     "@svgr/webpack": "^6.1.2",
     "@swc/core": "^1.2.173",
     "@testing-library/react": "13.4.0",
@@ -41,6 +55,7 @@
     "jsdom": "~20.0.3",
     "nx": "15.4.1",
     "prettier": "^2.6.2",
+    "prisma": "^4.8.0",
     "react-refresh": "^0.10.0",
     "react-test-renderer": "18.2.0",
     "swc-loader": "0.1.15",
@@ -58,6 +73,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "regenerator-runtime": "0.13.7",
+    "slugify": "^1.6.5",
     "tslib": "^2.3.0"
   }
 }

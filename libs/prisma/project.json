@@ -10,6 +10,15 @@
       "options": {
         "lintFilePatterns": ["libs/prisma/**/*.ts"]
       }
+    },
+    "exec": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "pnpm exec prisma"
+        ],
+        "cwd": "libs/prisma"
+      }
     }
   },
   "tags": []

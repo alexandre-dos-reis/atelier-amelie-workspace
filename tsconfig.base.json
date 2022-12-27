@@ -15,8 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@admin/*": ["apps/admin/src/*"],
-      "@atelier-amelie-workspace/prisma": ["libs/prisma/src/index.ts"]
+      "@app/admin/*": ["apps/admin/src/*"]
     }
   },
   "exclude": ["node_modules", "tmp"]
