@@ -16,3 +16,5 @@ When an app is created under the apps folder, create an alias in the `tsconfig.b
 
 - [SupaCharge Your Supabase With Nx](https://www.youtube.com/watch?v=OTh5GBBfr4E)
 - [pokemon supabase example](https://github.com/nrwl/pokemon-supabase-example)
+
+- [Refine examples data-provider-hasura](https://github.com/refinedev/refine/tree/master/examples/data-provider-hasura)

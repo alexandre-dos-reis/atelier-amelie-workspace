@@ -33,18 +33,18 @@ export async function gallerySeeds(prisma: PrismaClient) {
         slug: slugify(name, { lower: true }),
         description: faker.random.words(20),
         showInGallery: faker.helpers.arrayElement([true, false]),
-        Artwork_Categories: {
-          createMany: {
-            data: {
-              category_id: faker.helpers.arrayElement(
-                categories.map((c) => {
-                  return c.id;
-                })
-              ),
-            },
-          },
-        },
       },
     });
   }
+
+  const artworks = await prisma.artwork.findMany();
+
+  await prisma.artwork_Category.createMany({
+    data: Array.from({
+      length: Math.floor((artworks.length * categories.length) / 2)
+    }).map((_) => ({
+      artwork_id: faker.helpers.arrayElement(artworks).id,
+      category_id: faker.helpers.arrayElement(categories).id,
+    })),
+  });
 }

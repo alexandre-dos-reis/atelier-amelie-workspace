@@ -15,6 +15,7 @@ export async function shopSeeds(prisma: PrismaClient) {
   ];
 
   shopCategories.map(async (sc, i) => {
+    
     // SHOP PARENT CATEGORIES
     const shopParentCat = await prisma.shopCategory.create({
       data: {

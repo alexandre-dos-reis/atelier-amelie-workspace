@@ -9,7 +9,7 @@
   "scripts": {
     "docker:up": "docker-compose --env-file ./.env -f docker/atelier-amelie-workspace/docker-compose.yml up -d",
     "docker:down": "docker-compose --env-file ./.env -f docker/atelier-amelie-workspace/docker-compose.yml down",
-    "dev:all": "pnpm docker-up && nx run-many --target=serve --projects=api,admin",
+    "dev:all": "pnpm docker:up && nx run-many --target=serve --projects=admin",
     "db:push": "nx run prisma:exec db push",
     "db:drop": "nx run prisma:exec migrate reset --force --skip-seed",
     "db:seed": "pnpm db:drop && pnpm db:push && nx run prisma:exec db seed",
@@ -32,7 +32,9 @@
     "@svgr/webpack": "^6.1.2",
     "@swc/core": "^1.2.173",
     "@testing-library/react": "13.4.0",
+    "@types/cloudinary-uploadwidget-browser": "^2.3.1",
     "@types/jest": "28.1.1",
+    "@types/mui-image": "^1.0.1",
     "@types/node": "18.11.9",
     "@types/react": "18.0.25",
     "@types/react-dom": "18.0.9",
@@ -69,9 +71,16 @@
     "vitest": "^0.25.8"
   },
   "dependencies": {
+    "@pankod/refine-core": "^3.90.6",
+    "@pankod/refine-hasura": "^4.17.3",
+    "@pankod/refine-mui": "^3.61.2",
+    "@pankod/refine-react-hook-form": "^3.37.2",
+    "@pankod/refine-react-router-v6": "^3.38.0",
     "core-js": "^3.6.5",
+    "mui-image": "^1.0.7",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-icons": "^4.7.1",
     "regenerator-runtime": "0.13.7",
     "slugify": "^1.6.5",
     "tslib": "^2.3.0"
