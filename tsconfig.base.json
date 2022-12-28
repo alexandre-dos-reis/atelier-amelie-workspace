@@ -20,7 +20,7 @@
       "@app/admin/*": ["apps/admin/src/*"],
 
       // LIBS
-      "@lib/prisma": ["libs/prisma/src"]
+      "@lib/prisma": ["libs/prisma/src/index"]
     }
   },
   "exclude": ["node_modules", "tmp"]
