@@ -12,8 +12,8 @@
     "dev:all": "pnpm docker-up && nx run-many --target=serve --projects=api,admin",
     "db:push": "nx run prisma:exec db push",
     "db:drop": "nx run prisma:exec migrate reset --force --skip-seed",
-    "db:seed": "pnpm db:drop && pnpm db:push && nx run prisma:exec db seed",
-    "db:setup": "pnpm db:drop && pnpm db:push"
+    "db:setup": "pnpm db:drop && pnpm db:push",
+    "db:seed": "pnpm db:drop && pnpm db:push && nx run prisma:exec db seed"
   },
   "private": true,
   "devDependencies": {

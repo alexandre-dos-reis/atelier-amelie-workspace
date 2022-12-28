@@ -47,4 +47,19 @@ export async function gallerySeeds(prisma: PrismaClient) {
       },
     });
   }
+
+  const artworks = await prisma.artwork.findMany();
+
+  artworks.map(async (a) => {
+    categories.map(async (c) => {
+      faker.helpers.maybe(async () => {
+        await prisma.artwork_Category.create({
+          data: {
+            artwork_id: a.id,
+            category_id: c.id,
+          },
+        });
+      });
+    });
+  });
 }
