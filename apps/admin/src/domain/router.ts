@@ -17,11 +17,13 @@ import { rootRoute } from './rootRoute';
 /**
  * STARTING ROUTES DEFINITION
  */
+
 const routeConfig = rootRoute.addChildren([
   homeRoute,
   artworkRootRoute.addChildren([artworkCreateRoute, artworkEditRoute, artworkListRoute]),
   categoryRootRoute.addChildren([categoryListRoute, categoryEditRoute, categoryCreateRoute]),
 ]);
+
 /**
  * ENDING ROUTES DEFINITION
  */
