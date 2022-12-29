@@ -9,7 +9,7 @@
   "scripts": {
     "docker:up": "docker-compose --env-file ./.env -f docker/atelier-amelie-workspace/docker-compose.yml up -d",
     "docker:down": "docker-compose --env-file ./.env -f docker/atelier-amelie-workspace/docker-compose.yml down",
-    "dev:all": "pnpm docker-up && nx run-many --target=serve --projects=api,admin",
+    "dev:all": "pnpm docker:up && nx run-many --target=serve --projects=admin",
     "db:push": "nx run prisma:exec db push",
     "db:drop": "nx run prisma:exec migrate reset --force --skip-seed",
     "db:setup": "pnpm db:drop && pnpm db:push",

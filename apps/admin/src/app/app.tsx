@@ -1,4 +1,4 @@
-import { Test } from '@admin/components/Test';
+import { Test } from '@app/admin/components/Test';
 
 export function App() {
   return (
