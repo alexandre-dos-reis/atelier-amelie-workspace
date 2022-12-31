@@ -4,7 +4,7 @@ import { ArtworkCreate } from './ArtworkCreate';
 import { ArtworkEdit } from './ArtworkEdit';
 import { ArtworkList } from './ArtworkList';
 
-export const artworkRootRoute = rootRoute.createRoute({
+const artworkRootRoute = rootRoute.createRoute({
   path: 'artworks',
   component: () => (
     <>
@@ -14,17 +14,23 @@ export const artworkRootRoute = rootRoute.createRoute({
   ),
 });
 
-export const artworkListRoute = artworkRootRoute.createRoute({
+const artworkListRoute = artworkRootRoute.createRoute({
   path: '/',
   component: ArtworkList,
 });
 
-export const artworkCreateRoute = artworkRootRoute.createRoute({
+const artworkCreateRoute = artworkRootRoute.createRoute({
   path: 'create',
   component: ArtworkCreate,
 });
 
-export const artworkEditRoute = artworkRootRoute.createRoute({
+const artworkEditRoute = artworkRootRoute.createRoute({
   path: 'edit/$id',
   component: ArtworkEdit,
 });
+
+export const artworkRouteConfig = artworkRootRoute.addChildren([
+  artworkListRoute,
+  artworkCreateRoute,
+  artworkEditRoute,
+]);
