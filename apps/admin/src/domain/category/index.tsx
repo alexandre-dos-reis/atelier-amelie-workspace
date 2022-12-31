@@ -4,7 +4,7 @@ import { CategoryCreate } from './CategoryCreate';
 import { CategoryEdit } from './CategoryEdit';
 import { CategoryList } from './CategoryList';
 
-export const categoryRootRoute = rootRoute.createRoute({
+const categoryRootRoute = rootRoute.createRoute({
   path: 'categories',
   component: () => (
     <>
@@ -14,17 +14,23 @@ export const categoryRootRoute = rootRoute.createRoute({
   ),
 });
 
-export const categoryListRoute = categoryRootRoute.createRoute({
+const categoryListRoute = categoryRootRoute.createRoute({
   path: '/',
   component: CategoryList,
 });
 
-export const categoryCreateRoute = categoryRootRoute.createRoute({
+const categoryCreateRoute = categoryRootRoute.createRoute({
   path: 'create',
   component: CategoryCreate,
 });
 
-export const categoryEditRoute = categoryRootRoute.createRoute({
+const categoryEditRoute = categoryRootRoute.createRoute({
   path: 'edit/$id',
   component: CategoryEdit,
 });
+
+export const categoryRouteConfig = categoryRootRoute.addChildren([
+  categoryListRoute,
+  categoryCreateRoute,
+  categoryEditRoute,
+]);
