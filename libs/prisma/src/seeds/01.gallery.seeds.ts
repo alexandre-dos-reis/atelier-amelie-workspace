@@ -30,20 +30,20 @@ export async function gallerySeeds(prisma: PrismaClient) {
       data: {
         filename: 'Manet.jpg',
         name,
-        slug: slugify(name, { lower: true }),
+        slug: slugify(name + ' ' + faker.random.word, { lower: true }) + new Date().getDay(),
         description: faker.random.words(20),
         showInGallery: faker.helpers.arrayElement([true, false]),
-        Artwork_Categories: {
-          createMany: {
-            data: {
-              category_id: faker.helpers.arrayElement(
-                categories.map((c) => {
-                  return c.id;
-                })
-              ),
-            },
-          },
-        },
+        // Artwork_Categories: {
+        //   createMany: {
+        //     data: {
+        //       category_id: faker.helpers.arrayElement(
+        //         categories.map((c) => {
+        //           return c.id;
+        //         })
+        //       ),
+        //     },
+        //   },
+        // },
       },
     });
   }

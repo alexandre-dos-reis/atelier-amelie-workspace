@@ -2,18 +2,22 @@ import { fastifyTRPCPlugin } from '@trpc/server/adapters/fastify';
 import fastify from 'fastify';
 import { createContext } from '@app/api/trpc/context';
 import { appRouter } from '../src/trpc/routers/_app';
+import cors from '@fastify/cors';
 
 const server = fastify({
   maxParamLength: 5000,
 });
 
-const port = parseInt(process.env.NX_API_PORT) || 4000;
-const trpcPrefix = process.env.NX_TRPC_PREFIX || '/trpc';
+server.register(cors, {
+  origin: '*',
+});
 
 server.register(fastifyTRPCPlugin, {
-  prefix: trpcPrefix,
+  prefix: '/trpc',
   trpcOptions: { router: appRouter, createContext },
 });
+
+const port = parseInt(process.env.NX_API_PORT);
 
 (async () => {
   try {

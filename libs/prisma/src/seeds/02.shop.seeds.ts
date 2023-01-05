@@ -48,13 +48,9 @@ export async function shopSeeds(prisma: PrismaClient) {
 
   // PRODUCTS
   const artworks = await prisma.artwork.findMany();
-  const shopCategoriesEntities = await prisma.shopCategory.findMany({
-    where: {
-      parentCategoryId: {
-        not: null,
-      },
-    },
-  });
+
+  const shopCategoriesEntities = (await prisma.shopCategory.findMany({
+  })).filter(sc => !!sc.parentCategoryId);
 
   for (let i = 0; i < artworks.length; i++) {
     await prisma.product.createMany({
@@ -67,7 +63,7 @@ export async function shopSeeds(prisma: PrismaClient) {
         const name = faker.random.words();
         return {
           name,
-          slug: slugify(name, { lower: true }),
+          slug: slugify(name + ' ' + faker.random.word, { lower: true }),
           description: faker.random.words(20),
           price: faker.datatype.number({
             min: 1000,

@@ -11,7 +11,7 @@ datasource db {
 model Artwork {
   id                  String             @id @default(cuid())
   name                String
-  slug                String
+  slug                String             @unique
   description         String
   createdAt           DateTime           @default(now())
   updatedAt           DateTime           @updatedAt
@@ -37,7 +37,7 @@ model Artwork_Category {
 model Category {
   id                 String             @id @default(cuid())
   name               String
-  slug               String
+  slug               String             @unique
   description        String?
   disposition        Int
   updatedAt          DateTime           @updatedAt
@@ -49,7 +49,7 @@ model ShopCategory {
   id               String         @id @default(cuid())
   updatedAt        DateTime       @updatedAt
   name             String
-  slug             String
+  slug             String         
   disposition      Int
   parentCategory   ShopCategory?  @relation("shopCatSelfRelation", fields: [parentCategoryId], references: [id])
   subCategories    ShopCategory[] @relation("shopCatSelfRelation")
@@ -62,7 +62,7 @@ model Product {
   createdAt      DateTime       @default(now())
   updatedAt      DateTime       @updatedAt
   name           String
-  slug           String
+  slug           String         @unique
   description    String
   height         Int?
   width          Int?
@@ -144,8 +144,6 @@ model ShippingCost {
   weightCost    Int
   insuranceCost Int
 }
-
-// ADMINISTRATION
 
 enum VAR_KEY {
   CGV
