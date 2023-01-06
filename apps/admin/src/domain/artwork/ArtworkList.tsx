@@ -51,6 +51,8 @@ export const ArtworkList = () => {
       {
         header: 'Catégories',
         accessorKey: 'Artwork_Categories',
+        enableSorting: false,
+        enableColumnFilter: false,
         accessorFn: (r) => (
           <ul>
             {r.Artwork_Categories.map((ac) => (

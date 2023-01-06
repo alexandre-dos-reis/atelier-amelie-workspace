@@ -15,9 +15,22 @@ export const artworkRouter = router({
             })
             .default({}),
         })
-        .nullish()
+        .default({})
     )
     .query(async ({ ctx, input }) => {
+
+      // const sortingKeys: Record<string, unknown> = {
+      //   Artwork_Categories: {},
+      //   '_count.products': {
+      //     products: {
+      //       _count: input.sorting.desc ? 'desc' : 'asc',
+      //     },
+      //     default: {
+      //       [input.sorting.id]: input.sorting.desc ? 'desc' : 'asc',
+      //     },
+      //   },
+      // };
+
       const [artworks, total] = await prisma.$transaction([
         ctx.prisma.artwork.findMany({
           take: input.take,
